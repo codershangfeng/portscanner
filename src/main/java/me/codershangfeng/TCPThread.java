@@ -168,13 +168,13 @@ public class TCPThread extends Thread {
                 StringBuilder out = new StringBuilder();
                 out.append(host).append(":")
                         .append(j).append(":")
-                        .append(portForService.containsKey(j) ? portForService.get(j) : "(UNKNOWN_SERVICE)")
+                        .append(portForService.getOrDefault(j, "(UNKNOWN_SERVICE)"))
                         .append("\n");
                 ThreadScan.resultTextArea.append(out.toString());
 
                 // 日志记录
                 logger.info("{}:{}:{}--{}", host, j,
-                        portForService.containsKey(j) ? portForService.get(j) : "(UNKNOWN_SERVICE)",
+                        portForService.getOrDefault(j, "(UNKNOWN_SERVICE)"),
                         this.toString());
 
             } catch (SocketException e) {

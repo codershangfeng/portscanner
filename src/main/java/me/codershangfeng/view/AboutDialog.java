@@ -1,4 +1,4 @@
-package me.codershangfeng;
+package me.codershangfeng.view;
 
 import javax.swing.*;
 import java.awt.*;

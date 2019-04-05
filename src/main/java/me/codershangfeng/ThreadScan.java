@@ -1,5 +1,6 @@
 package me.codershangfeng;
 
+import me.codershangfeng.view.AboutDialog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
