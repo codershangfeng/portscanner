@@ -1,3 +1,5 @@
+package me.codershangfeng;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -119,19 +121,6 @@ public class TCPThread extends Thread {
                 // 判定host的端口是否可访问(未超时, 默认1000ms), 如果是则进行扫描
                 portScan(host);
 
-//                try {
-//                    if (host.isReachable(1000))
-//                        portScan(host);
-//                    else {
-//                        logger.debug("{}访问超时", host.getAddress());
-//                        // 开始下个地址
-//                        continue;
-//                    }
-//                } catch (IOException e) {
-//                    logger.debug("网络连接发生异常");
-//                    e.printStackTrace();
-//                }
-
             }
             return;
         }
@@ -148,17 +137,6 @@ public class TCPThread extends Thread {
 
             // 判定host的端口是否可访问(未超时, 默认1000ms), 如果是则进行扫描
             portScan(host);
-
-//            try {
-//                if (host.isReachable(1000))
-//                    portScan(host);
-//                else {
-//                    logger.debug("{}:{}套接字访问超时", host.getCanonicalHostName(),);
-//                }
-//            } catch (IOException e) {
-//                logger.debug("网络连接发生异常");
-//                e.printStackTrace();
-//            }
 
             return;
         }

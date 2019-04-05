@@ -1,3 +1,5 @@
+package me.codershangfeng;
+
 import javax.swing.*;
 
 public class Main {
