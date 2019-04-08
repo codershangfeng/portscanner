@@ -1,6 +1,8 @@
 package me.codershangfeng;
 
 import me.codershangfeng.view.AboutDialog;
+import me.codershangfeng.view.MainFrame;
+import me.codershangfeng.view.MenuBar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,42 +25,21 @@ import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * 实现扫描的主程序
- * Created by dfgh on 2017/4/5.
- */
 public class ThreadScan implements Runnable {
 
     private final Logger logger = LoggerFactory.getLogger(ThreadScan.class);
 
-    static {
-        System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "DEBUG");
-    }
-
     // 主窗口
-    static JFrame main = new JFrame("网络主机端口扫描器 - Supported By Java");
+    static JFrame main = MainFrame.shared;
 
     // 菜单栏
-    private static JMenuBar mainBar = new JMenuBar();
-    private static JMenu fileMenu = new JMenu("文件(F)");
-    private static JMenuItem scanItem = new JMenuItem("开始扫描(R)");
-    private static JMenuItem saveItem = new JMenuItem("保存扫描结果(S)");
-    private static JMenuItem exitItem = new JMenuItem("退出(Q)");
-    private static JMenu helpMenu = new JMenu("帮助");
-    private static JMenuItem aboutItem = new JMenuItem("关于");
-    private static Map<JMenu, ArrayList<JMenuItem>> menus = new LinkedHashMap<>();
-
-    static {
-        ArrayList<JMenuItem> fileMenuItems = new ArrayList<>();
-        fileMenuItems.add(scanItem);
-        fileMenuItems.add(saveItem);
-        fileMenuItems.add(exitItem);
-        menus.put(fileMenu, fileMenuItems);
-
-        ArrayList<JMenuItem> helpMenuItems = new ArrayList<>();
-        helpMenuItems.add(aboutItem);
-        menus.put(helpMenu, helpMenuItems);
-    }
+    private static JMenuBar mainBar = MenuBar.mainBar;
+    private static JMenu fileMenu = MenuBar.fileMenu;
+    private static JMenuItem scanItem = MenuBar.scanItem;
+    private static JMenuItem saveItem = MenuBar.saveItem;
+    private static JMenuItem exitItem = MenuBar.exitItem;
+    private static JMenuItem aboutItem = MenuBar.aboutItem;
+    private static Map<JMenu, ArrayList<JMenuItem>> menus = MenuBar.menus;
 
     // 文本标签
     private static JLabel[] labels = new JLabel[4];
@@ -150,7 +131,7 @@ public class ThreadScan implements Runnable {
     }
 
     private void showMainFrame() {
-        main.setSize(500, 400);
+        main.setSize(1000, 800);
         main.setLocation(300, 100);
         main.setResizable(false);
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -523,7 +504,6 @@ public class ThreadScan implements Runnable {
                         }
 
                         out.flush();
-                        out.close();
                     } catch (FileAlreadyExistsException e1) {
                         JOptionPane.showMessageDialog(fc, "文件名已存在", "错误", JOptionPane.ERROR_MESSAGE);
                         return;
@@ -538,12 +518,4 @@ public class ThreadScan implements Runnable {
             }
         }
     }
-
-//    private class ExitAction implements ActionListener {
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            logger.debug("{}: \"退出\"按钮动作监听器", this.getClass().getSimpleName());
-//            System.exit(0);
-//        }
-//    }
 }
