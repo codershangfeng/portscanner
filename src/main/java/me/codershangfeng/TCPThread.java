@@ -11,9 +11,6 @@ import java.net.UnknownHostException;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Created by dfgh on 2017/4/3.
- */
 public class TCPThread extends Thread {
 
     private final Logger logger = LoggerFactory.getLogger(TCPThread.class);
@@ -101,46 +98,38 @@ public class TCPThread extends Thread {
 
         // 根据IP地址进行扫描
         if (scanType == ADDRESS_SCAN) {
-
             // IP地址循环扫描
             for (int i = secIP[3]; i <= secIP[4]; i++) {
-
-                String ip = "";
+                StringBuilder ip = new StringBuilder();
                 // 完整的IP地址
-                for (int j = 0; j < 3; j++)
-                    ip += secIP[j] + ".";
-                ip += i;
+                for (int j = 0; j < 3; j++) {
+                    ip.append(secIP[j]).append(".");
+                }
+                ip.append(i);
 
                 try {
-                    host = InetAddress.getByAddress(parseIP4Address(ip));
+                    host = InetAddress.getByAddress(parseIP4Address(ip.toString()));
                 } catch (UnknownHostException e) {
                     logger.debug("不可知的主机异常(UnknownHostException)");
                     e.printStackTrace();
                 }
-
                 // 判定host的端口是否可访问(未超时, 默认1000ms), 如果是则进行扫描
                 portScan(host);
-
             }
             return;
         }
 
         // 根据域名进行扫描
         if (scanType == DOMAINNAME_SCAN) {
-
             try {
                 host = InetAddress.getByName(hostName); // "newhost"和"Coder"都是可选域名.
             } catch (UnknownHostException e) {
                 logger.debug("不可知的主机异常(UnknownHostException)");
                 e.printStackTrace();
             }
-
             // 判定host的端口是否可访问(未超时, 默认1000ms), 如果是则进行扫描
             portScan(host);
-
-            return;
         }
-
     }
 
     /**
@@ -163,7 +152,6 @@ public class TCPThread extends Thread {
                 // 初始化目标主机的套接字
                 theTCPSocket = new Socket(host, j);
                 theTCPSocket.close();
-
                 // 输出扫描结果
                 StringBuilder out = new StringBuilder();
                 out.append(host).append(":")
@@ -171,7 +159,6 @@ public class TCPThread extends Thread {
                         .append(portForService.getOrDefault(j, "(UNKNOWN_SERVICE)"))
                         .append("\n");
                 ThreadScan.resultTextArea.append(out.toString());
-
                 // 日志记录
                 logger.info("{}:{}:{}--{}", host, j,
                         portForService.getOrDefault(j, "(UNKNOWN_SERVICE)"),
@@ -190,7 +177,6 @@ public class TCPThread extends Thread {
                 if (!ThreadScan.submitBtn.isEnabled())
                     ThreadScan.submitBtn.setEnabled(true);
             }
-
         }
     }
 
@@ -226,10 +212,8 @@ public class TCPThread extends Thread {
         for (int i = 0; i < addr.length; i++) {
             if (addr[i] < 0 || addr[i] > 255)
                 throw new IllegalArgumentException("IP地址应为0至255的整数");
-
             ip[i] = (byte) addr[i];
         }
-
         return ip;
     }
 

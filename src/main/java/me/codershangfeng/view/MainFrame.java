@@ -10,5 +10,4 @@ public class MainFrame {
     public static final JFrame shared = new JFrame("网络主机端口扫描器 - Supported By Java");
 
     private static final Logger logger = LoggerFactory.getLogger(MainFrame.class);
-
 }

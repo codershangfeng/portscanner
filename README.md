@@ -17,4 +17,12 @@
              
 - **AboutDialog.java** -- 继承自javax.swing.JDialog，帮助对话框，显示简单的帮助信息。
 
-- **TxtFilter.java** -- 继承自javax.swing.filechooser.FileFilter类，配合javax.swing.JFileChooser显示后缀“.txt”文件。
+- **TxtFileFilter.java** -- 继承自javax.swing.filechooser.FileFilter类，配合javax.swing.JFileChooser显示后缀“.txt”文件。
+
+主要知识点：
+
+（某本Java书籍上的例子，具体哪本记不清了）
+- Thread
+- Socket
+- Swing(除了授课外，估计很少有项目用了！)
+

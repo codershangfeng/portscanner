@@ -402,14 +402,12 @@ public class ThreadScan implements Runnable {
              * 4. int numOfThreads
              */
             if (addrScanJRadio.isSelected()) {
-
                 TCPThread.scanType = TCPThread.ADDRESS_SCAN;
                 TCPThread.secIP = secIP;
 
                 logger.debug("按IP地址进行扫描");
                 logger.debug("目标IP地址为{}", Arrays.toString(TCPThread.secIP));
             } else {
-
                 TCPThread.scanType = TCPThread.DOMAINNAME_SCAN;
                 TCPThread.hostName = hostName;
 
@@ -464,21 +462,21 @@ public class ThreadScan implements Runnable {
                 logger.debug("内容为{}", resultTextArea.getText());
 
                 JFileChooser fc = new JFileChooser();
-                fc.addChoosableFileFilter(new TxtFilter());
+                fc.addChoosableFileFilter(new TxtFileFilter());
                 fc.setAcceptAllFileFilterUsed(false);
 
                 String filename = new SimpleDateFormat("hh时mm分ss秒-yyyy年MM月dd日").format(new Date()) + ".txt";
                 fc.setSelectedFile(new File("./" + filename));
 
-                int returenVal = fc.showSaveDialog(null);
+                int returnVal = fc.showSaveDialog(null);
 
-                if (returenVal == JFileChooser.APPROVE_OPTION) {
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
                     logger.debug("{}", fc.getSelectedFile());
 
                     Path saveFile = fc.getSelectedFile().toPath();
                     try (BufferedWriter out = Files.newBufferedWriter(saveFile, StandardCharsets.UTF_8, StandardOpenOption.CREATE_NEW)) {
                         String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
-                        out.append("******** " + date + " ********");
+                        out.append("******** ").append(date).append(" ********");
                         out.newLine();
 
                         if (addrScanJRadio.isSelected()) {
@@ -498,8 +496,8 @@ public class ThreadScan implements Runnable {
                         }
 
                         String[] log = resultTextArea.getText().split("\\n");
-                        for (int i = 0; i < log.length; i++) {
-                            out.append(log[i]);
+                        for (String s : log) {
+                            out.append(s);
                             out.newLine();
                         }
 

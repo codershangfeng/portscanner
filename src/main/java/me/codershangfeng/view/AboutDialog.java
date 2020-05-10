@@ -3,9 +3,6 @@ package me.codershangfeng.view;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by dfgh on 2017/4/11.
- */
 public class AboutDialog extends JDialog {
     private JPanel panel = new JPanel();
     private JTabbedPane tabbedPane = new JTabbedPane();
@@ -19,7 +16,6 @@ public class AboutDialog extends JDialog {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         Container c = this.getContentPane();
-
 
         for (int i = 0; i < textAreas.length; i++) {
             textAreas[i] = new JTextArea(6, 6);
