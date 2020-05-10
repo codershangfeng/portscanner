@@ -7,17 +7,22 @@
 
 结构：
 
-- **Main.java** -- 程序启动主入口
+- **Main.java** 
+    - 程序启动主入口
 
-- **ThreadScan.java** -- GUI主界面，创建给定的最大线程数的TCPThread.java实例对象，多线程分组扫描目标主机的所有端口。
+- **ThreadScan.java** 
+    - GUI主界面，创建给定的最大线程数的TCPThread.java实例对象，多线程分组扫描目标主机的所有端口。
 
-- **TCPThread.java** -- 继承自java.util.Thread的线程类。
-                  当以“域名”方式进行扫描时，每个实例对象将负责扫描（端口数 / 最大线程数）个端口；
-                  当以“IP地址”方式进行扫描时，每个实例对象将负责扫描（IP地址数 * 端口数 / 最大线程数）个端口。
+- **TCPThread.java** 
+    - 继承自java.util.Thread的线程类。
+    - 当以“域名”方式进行扫描时，每个实例对象将负责扫描（端口数 / 最大线程数）个端口；
+    - 当以“IP地址”方式进行扫描时，每个实例对象将负责扫描（IP地址数 * 端口数 / 最大线程数）个端口。
              
-- **AboutDialog.java** -- 继承自javax.swing.JDialog，帮助对话框，显示简单的帮助信息。
+- **AboutDialog.java** 
+    - 继承自javax.swing.JDialog，帮助对话框，显示简单的帮助信息。
 
-- **TxtFileFilter.java** -- 继承自javax.swing.filechooser.FileFilter类，配合javax.swing.JFileChooser显示后缀“.txt”文件。
+- **TxtFileFilter.java** 
+    - 继承自javax.swing.filechooser.FileFilter类，配合javax.swing.JFileChooser显示后缀“.txt”文件。
 
 主要知识点：
 
